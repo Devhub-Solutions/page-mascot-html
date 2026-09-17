@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>page-mascot · declarative example</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, sans-serif;
+        background: #faf9f7;
+        color: #12100e;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 64px 24px 96px;
+      }
+      h1 { font-size: 32px; margin: 0 0 12px; }
+      p { line-height: 1.5; color: #444; }
+      .row {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      pre {
+        background: #efedea;
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 13px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Declarative usage</h1>
+      <p>
+        Tag any element with <code>data-mascot</code> plus the sheet paths,
+        then call <code>PageMascot.autoInit()</code>. No JS per mascot,
+        no IDs to manage &mdash; just data attributes and a one-line scan.
+      </p>
+
+      <div class="row">
+        <!-- Each empty shell becomes a mascot. -->
+        <span
+          data-mascot
+          data-mascot-directions="../mascots/cat-directions.webp"
+          data-mascot-reactions="../mascots/cat-reactions.webp"
+          data-mascot-size="140"
+          data-mascot-label="cat"
+        ></span>
+
+        <span
+          data-mascot
+          data-mascot-directions="../mascots/fox-directions.webp"
+          data-mascot-reactions="../mascots/fox-reactions.webp"
+          data-mascot-size="140"
+          data-mascot-label="fox"
+        ></span>
+
+        <span
+          data-mascot
+          data-mascot-directions="../mascots/bear-directions.webp"
+          data-mascot-reactions="../mascots/bear-reactions.webp"
+          data-mascot-size="140"
+          data-mascot-label="bear"
+        ></span>
+      </div>
+
+      <pre>&lt;span
+  data-mascot
+  data-mascot-directions="mascots/fox-directions.webp"
+  data-mascot-reactions="mascots/fox-reactions.webp"
+  data-mascot-size="140"
+  data-mascot-label="fox"
+&gt;&lt;/span&gt;
+
+&lt;script src="page-mascot.js"&gt;&lt;/script&gt;
+&lt;script&gt;PageMascot.autoInit();&lt;/script&gt;</pre>
+    </div>
+
+    <script src="../page-mascot.js"></script>
+    <script>PageMascot.autoInit();</script>
+  </body>
+</html>

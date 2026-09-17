@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>page-mascot · basic example</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, sans-serif;
+        background: #faf9f7;
+        color: #12100e;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 64px 24px 96px;
+      }
+      h1 { font-size: 32px; margin: 0 0 12px; }
+      p { line-height: 1.5; color: #444; }
+      .mascot-host { display: inline-block; }
+      pre {
+        background: #efedea;
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 13px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>The smallest possible mascot</h1>
+      <p>
+        Three things on the page: an element to mount into, the library, and
+        one call. The character follows your cursor, blinks when you click,
+        and gets dizzy after four quick pokes.
+      </p>
+
+      <!-- 1. Where the mascot mounts -------------------------------- -->
+      <div id="mascot-host" class="mascot-host"></div>
+
+      <!-- 2. The library -------------------------------------------- -->
+      <script src="../page-mascot.js"></script>
+
+      <!-- 3. One call ----------------------------------------------- -->
+      <script>
+        PageMascot.createMascot(document.getElementById('mascot-host'), {
+          directions: '../mascots/fox-directions.webp',
+          reactions:  '../mascots/fox-reactions.webp',
+          size: 160,
+          label: 'fox'
+        });
+      </script>
+
+      <pre>&lt;div id="mascot-host"&gt;&lt;/div&gt;
+&lt;script src="page-mascot.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  PageMascot.createMascot(document.getElementById('mascot-host'), {
+    directions: 'mascots/fox-directions.webp',
+    reactions:  'mascots/fox-reactions.webp',
+    size: 160,
+    label: 'fox'
+  });
+&lt;/script&gt;</pre>
+    </div>
+  </body>
+</html>

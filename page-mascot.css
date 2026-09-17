@@ -1,0 +1,382 @@
+/* page-mascot (vanilla) — minimal site theme.
+   Not required for the library to function (all mascot styles are inline),
+   but used by the demo index.html and provided as a starting point. */
+
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --color-ink: #12100e;
+  --color-paper: #faf9f7;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- layout ---------------------------------------------------------- */
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 24px 112px;
+}
+
+@media (min-width: 640px) {
+  .wrap { padding: 112px 40px 112px; }
+}
+
+/* ---- hero ------------------------------------------------------------ */
+
+.hero { display: flex; flex-direction: column; align-items: flex-start; }
+
+.hero h1 {
+  margin: 8px 0 0;
+  font-family: var(--font-mono);
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+@media (min-width: 640px) {
+  .hero h1 { font-size: 60px; }
+}
+
+.hero p.lead {
+  margin: 16px 0 0;
+  max-width: 42ch;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: rgba(18, 16, 14, 0.6);
+}
+
+.hero-actions {
+  margin: 32px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, opacity .2s ease;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-primary:hover { opacity: .85; }
+
+.btn-ghost {
+  border-color: rgba(18, 16, 14, 0.15);
+  color: rgba(18, 16, 14, 0.75);
+}
+.btn-ghost:hover {
+  border-color: rgba(18, 16, 14, 0.4);
+  color: var(--color-ink);
+}
+
+.hero-hint {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: rgba(18, 16, 14, 0.4);
+}
+
+/* ---- sections -------------------------------------------------------- */
+
+.section { margin-top: 112px; }
+@media (min-width: 640px) { .section { margin-top: 144px; } }
+
+.section h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section .lede {
+  margin: 12px 0 0;
+  max-width: 46ch;
+  font-size: 18px;
+  line-height: 1.4;
+  color: rgba(18, 16, 14, 0.55);
+}
+
+/* ---- cast grid ------------------------------------------------------- */
+
+.cast {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.cast li {
+  position: relative;
+  display: flex;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background-color .2s ease;
+}
+
+.cast li:hover { background: rgba(18, 16, 14, 0.04); }
+.cast li.is-picked { background: rgba(18, 16, 14, 0.08); }
+
+.cast .use-btn {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 0;
+  cursor: pointer;
+}
+
+.cast li:hover .use-btn,
+.cast li:focus-within .use-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cast .add-cell {
+  background: transparent;
+  border: 1px solid rgba(18, 16, 14, 0.15);
+  color: rgba(18, 16, 14, 0.4);
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.cast .add-cell:hover {
+  background: rgba(18, 16, 14, 0.06);
+  border-color: rgba(18, 16, 14, 0.35);
+  color: rgba(18, 16, 14, 0.7);
+}
+.cast .add-cell .plus { font-size: 24px; line-height: 1; }
+.cast .add-cell .plus-label {
+  font-size: 13px;
+  padding: 0 8px;
+  text-align: center;
+}
+
+/* ---- styles row ------------------------------------------------------ */
+
+.styles {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 16px 24px;
+}
+@media (min-width: 640px) {
+  .styles { grid-template-columns: repeat(7, 1fr); }
+}
+
+.styles li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.styles .frame {
+  position: relative;
+  display: flex;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  transition: background-color .2s ease;
+}
+.styles .frame:hover { background: rgba(18, 16, 14, 0.04); }
+
+.styles .name {
+  margin: 8px 0 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+}
+.styles .note {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(18, 16, 14, 0.4);
+}
+
+.styles .use-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 0;
+  cursor: pointer;
+}
+.styles li:hover .use-btn,
+.styles li:focus-within .use-btn { opacity: 1; pointer-events: auto; }
+
+/* ---- guide drawer ---------------------------------------------------- */
+
+.guide {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(420px, 100vw);
+  background: var(--color-paper);
+  border-left: 1px solid rgba(18, 16, 14, 0.1);
+  box-shadow: -20px 0 60px rgba(18, 16, 14, 0.06);
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 32px;
+  overflow: auto;
+}
+
+.guide[aria-hidden="false"] { transform: translateX(0); }
+
+.guide h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.guide .character-tag {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(18, 16, 14, 0.5);
+  margin: 0 0 20px;
+}
+
+.guide pre {
+  background: rgba(18, 16, 14, 0.06);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+.guide .step {
+  margin: 0 0 20px;
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(18, 16, 14, 0.7);
+}
+
+.guide .step .num {
+  flex: 0 0 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.guide .close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(18, 16, 14, 0.5);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.guide .close:hover { color: var(--color-ink); background: rgba(18, 16, 14, 0.06); }
+
+.guide-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 16, 14, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 49;
+}
+.guide-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+/* ---- footer ---------------------------------------------------------- */
+
+.foot {
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(18, 16, 14, 0.1);
+  font-size: 14px;
+  color: rgba(18, 16, 14, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---- reduced motion -------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; }
+  .guide { transition: none; }
+  .guide-backdrop { transition: none; }
+}

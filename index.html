@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>page-mascot (vanilla) · a character for the top of your page</title>
+    <meta
+      name="description"
+      content="A framework-free mascot that follows the reader's cursor and blinks when they poke it. Pure HTML/CSS/JS — no React, no build step. Fifty-two characters drawn already."
+    />
+    <link rel="canonical" href="./index.html" />
+
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <meta name="theme-color" content="#faf9f7" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="page-mascot (vanilla)" />
+    <meta property="og:title" content="page-mascot (vanilla) · a character for the top of your page" />
+    <meta
+      property="og:description"
+      content="A framework-free mascot that follows the reader's cursor and blinks when they poke it. Pure HTML/CSS/JS — no React, no build step."
+    />
+    <meta property="og:image" content="./og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="page-mascot (vanilla)" />
+    <meta
+      name="twitter:description"
+      content="A framework-free port of nilbuild/page-mascot. Same sprites, same feel — no React, no build step."
+    />
+    <meta name="twitter:image" content="./og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./page-mascot.css" />
+  </head>
+
+  <body>
+    <!-- Cast + styles data, mirroring site/mascots.ts ----------------- -->
+    <script>
+      window.MASCOTS = [
+        // Animals
+        'bear','bunny','cat','deer','dino','fox','frog','hamster','hedgehog',
+        'koala','mouse','otter','owl','panda','penguin','pug','raccoon',
+        'redpanda','sheep','sloth','tiger',
+        // People
+        'afro','astronaut','bald','ballerina','beard','builder','cap','chef',
+        'glasses','grandpa','granny','hijabi','kamran','nurse','pirate',
+        'scientist','sikh','skater','wizard',
+        // Robots and things
+        'clockwork','crt','cube','drone','gearbot','knight','lantern',
+        'postbot','radio','rocket','scout','toaster','tv'
+      ];
+      window.STYLES = [
+        { name: 'colour',  character: 'fox',        note: 'the default' },
+        { name: 'ink',     character: 'fox-ink',    note: 'black line' },
+        { name: 'sketch',  character: 'fox-sketch', note: 'pencil' },
+        { name: 'riso',    character: 'fox-riso',   note: 'two-tone print' },
+        { name: 'paper',   character: 'fox-paper',  note: 'cut paper' },
+        { name: 'pixel',   character: 'fox-pixel',  note: '32 across' }
+      ];
+      window.FROM_PHOTO = { name: 'kamran', character: 'kamran', note: 'from a photo' };
+
+      // Mirror of site/mascots.ts::sheets()
+      function sheets(character) {
+        var base = './mascots/';
+        return {
+          directions: base + character + '-directions.webp',
+          reactions:  base + character + '-reactions.webp'
+        };
+      }
+    </script>
+
+    <main class="wrap">
+      <!-- Hero ----------------------------------------------------------- -->
+      <header class="hero">
+        <div id="hero-mascot"></div>
+
+        <h1>/page-mascot <span style="opacity:.4">· vanilla</span></h1>
+        <p class="lead">
+          A framework-free character that follows the reader&rsquo;s cursor and
+          blinks when they poke it. Same sprite-sheet contract, same feel
+          &mdash; one JS file, no React, no build step.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#characters">Use one of the fifty-two</a>
+          <a class="btn btn-ghost" href="./examples/basic.html">See the smallest example</a>
+          <a
+            class="btn btn-ghost"
+            href="https://github.com/nilbuild/page-mascot"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16" style="fill:currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+            </svg>
+            Original
+          </a>
+        </div>
+        <p class="hero-hint">
+          Pick one below, drop two sprite sheets into your project, pass the
+          paths to <code>&lt;script src="page-mascot.js"&gt;</code>. Done.
+        </p>
+      </header>
+
+      <!-- Styles --------------------------------------------------------- -->
+      <section class="section">
+        <h2>Different styles</h2>
+        <p class="lede">
+          One character, six renderings. Or send a photo and get yourself
+          turned into a character.
+        </p>
+        <ul class="styles" id="styles-list"></ul>
+      </section>
+
+      <!-- Cast ----------------------------------------------------------- -->
+      <section class="section" id="characters" style="scroll-margin-top:64px">
+        <h2 id="cast-count">Fifty-two already drawn</h2>
+        <p class="lede">
+          All of them follow your cursor. Poke one, or hover it and press
+          Use to find out how to put it on your page.
+        </p>
+        <ul class="cast" id="cast-list"></ul>
+      </section>
+
+      <footer class="foot">
+        <span>Vanilla port of <a style="color:inherit" href="https://github.com/nilbuild/page-mascot" target="_blank" rel="noreferrer">nilbuild/page-mascot</a> · MIT</span>
+        <span>Built with no framework, no bundler, no dependencies.</span>
+      </footer>
+    </main>
+
+    <!-- Guide drawer ---------------------------------------------------- -->
+    <div class="guide-backdrop" id="guide-backdrop" aria-hidden="true"></div>
+    <aside class="guide" id="guide" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="guide-title">
+      <button class="close" id="guide-close" type="button" aria-label="Close guide">×</button>
+      <h2 id="guide-title">Use this character</h2>
+      <p class="character-tag" id="guide-tag">fox</p>
+      <pre id="guide-code"></pre>
+      <p class="step"><span class="num">1</span><span>Save the two sprite sheets into your project (e.g. <code>/mascots/</code>).</span></p>
+      <p class="step"><span class="num">2</span><span>Include <code>page-mascot.js</code> on the page.</span></p>
+      <p class="step"><span class="num">3</span><span>Mount the mascot into any element. The pointer-tracking, blink, squash and dizzy logic all run themselves.</span></p>
+    </aside>
+
+    <!-- Library + page script ------------------------------------------- -->
+    <script src="./page-mascot.js"></script>
+    <script>
+      (function () {
+        var MASCOTS = window.MASCOTS;
+        var STYLES  = window.STYLES;
+        var PHOTO   = window.FROM_PHOTO;
+
+        var picked = 'fox';
+        var heroInst = null;
+        var castInstances = {}; // character -> Mascot instance
+        var styleInstances = []; // ordered list
+
+        // -- Hero mascot ------------------------------------------------
+        function renderHero(character) {
+          var host = document.getElementById('hero-mascot');
+          host.innerHTML = '';
+          if (heroInst) { heroInst.destroy(); heroInst = null; }
+          host.style.marginLeft = '-16px';
+          var s = sheets(character);
+          heroInst = PageMascot.createMascot(host, {
+            directions: s.directions,
+            reactions: s.reactions,
+            size: 200,
+            label: character
+          });
+        }
+
+        // -- Styles row -------------------------------------------------
+        function renderStyles() {
+          var ul = document.getElementById('styles-list');
+          ul.innerHTML = '';
+          styleInstances.forEach(function (i) { i.destroy(); });
+          styleInstances = [];
+          STYLES.concat(PHOTO).forEach(function (style) {
+            var li = document.createElement('li');
+            var frame = document.createElement('span');
+            frame.className = 'frame';
+            var host = document.createElement('span');
+            host.style.display = 'inline-flex';
+            frame.appendChild(host);
+
+            var useBtn = document.createElement('button');
+            useBtn.type = 'button';
+            useBtn.className = 'use-btn';
+            useBtn.textContent = 'Use';
+            useBtn.addEventListener('click', function (e) {
+              e.stopPropagation();
+              openUse(style.character);
+            });
+            frame.appendChild(useBtn);
+
+            var nameEl = document.createElement('span');
+            nameEl.className = 'name';
+            nameEl.textContent = style.name;
+            var noteEl = document.createElement('span');
+            noteEl.className = 'note';
+            noteEl.textContent = style.note;
+
+            li.appendChild(frame);
+            li.appendChild(nameEl);
+            li.appendChild(noteEl);
+            ul.appendChild(li);
+
+            var s = sheets(style.character);
+            styleInstances.push(PageMascot.createMascot(host, {
+              directions: s.directions,
+              reactions: s.reactions,
+              size: 104,
+              label: style.name
+            }));
+          });
+        }
+
+        // -- Cast grid --------------------------------------------------
+        function renderCast() {
+          var ul = document.getElementById('cast-list');
+          ul.innerHTML = '';
+          Object.keys(castInstances).forEach(function (k) {
+            castInstances[k].destroy();
+            delete castInstances[k];
+          });
+
+          MASCOTS.forEach(function (character) {
+            var li = document.createElement('li');
+            if (character === picked) li.classList.add('is-picked');
+
+            var host = document.createElement('span');
+            host.style.display = 'inline-flex';
+
+            // Capture phase, so picking does not swallow the click the
+            // mascot needs for its own reaction.
+            host.addEventListener('click', function () {
+              setPicked(character);
+            }, /* capture */ true);
+
+            var useBtn = document.createElement('button');
+            useBtn.type = 'button';
+            useBtn.className = 'use-btn';
+            useBtn.textContent = 'Use';
+            useBtn.addEventListener('click', function (e) {
+              e.stopPropagation();
+              openUse(character);
+            });
+
+            li.appendChild(host);
+            li.appendChild(useBtn);
+            ul.appendChild(li);
+
+            var s = sheets(character);
+            castInstances[character] = PageMascot.createMascot(host, {
+              directions: s.directions,
+              reactions: s.reactions,
+              size: 104,
+              label: character
+            });
+          });
+
+          // Add cell
+          var addLi = document.createElement('li');
+          addLi.className = 'add-cell';
+          var plus = document.createElement('span');
+          plus.className = 'plus';
+          plus.textContent = '+';
+          var plusLabel = document.createElement('span');
+          plusLabel.className = 'plus-label';
+          plusLabel.textContent = 'Make your own';
+          addLi.appendChild(plus);
+          addLi.appendChild(plusLabel);
+          addLi.addEventListener('click', function () { openGuideMake(); });
+          ul.appendChild(addLi);
+        }
+
+        function setPicked(character) {
+          if (picked === character) return;
+          var prev = document.querySelector('.cast li.is-picked');
+          if (prev) prev.classList.remove('is-picked');
+          picked = character;
+          var li = document.querySelector('.cast li:nth-child(' + (MASCOTS.indexOf(character) + 1) + ')');
+          if (li) li.classList.add('is-picked');
+          renderHero(character);
+        }
+
+        // -- Guide drawer ----------------------------------------------
+        var guide = document.getElementById('guide');
+        var guideBackdrop = document.getElementById('guide-backdrop');
+        var guideTag = document.getElementById('guide-tag');
+        var guideCode = document.getElementById('guide-code');
+        var guideClose = document.getElementById('guide-close');
+
+        function openUse(character) {
+          picked = character;
+          // refresh hero only if changed
+          renderHero(character);
+          // also sync cast highlight
+          var oldPick = document.querySelector('.cast li.is-picked');
+          if (oldPick) oldPick.classList.remove('is-picked');
+          var li = document.querySelector('.cast li:nth-child(' + (MASCOTS.indexOf(character) + 1) + ')');
+          if (li) li.classList.add('is-picked');
+
+          guideTag.textContent = character;
+          var s = sheets(character);
+          guideCode.textContent =
+            '<div id="mascot"></div>\n' +
+            '<script src="page-mascot.js"><\/script>\n' +
+            '<script>\n' +
+            '  PageMascot.createMascot(document.getElementById(\'mascot\'), {\n' +
+            '    directions: \'mascots/' + character + '-directions.webp\',\n' +
+            '    reactions:  \'mascots/' + character + '-reactions.webp\',\n' +
+            '    size: 140,\n' +
+            '    label: \'' + character + '\'\n' +
+            '  });\n' +
+            '<\/script>';
+          openGuide();
+        }
+
+        function openGuideMake() {
+          guideTag.textContent = 'your own';
+          guideCode.textContent =
+            '# The skill draws nine directions and nine expressions,\n' +
+            '# then builds them into two aligned 3x3 sheets:\n' +
+            '#   mymascot-directions.webp\n' +
+            '#   mymascot-reactions.webp\n' +
+            '\n' +
+            '<div id="mascot"></div>\n' +
+            '<script src="page-mascot.js"><\/script>\n' +
+            '<script>\n' +
+            '  PageMascot.createMascot(document.getElementById(\'mascot\'), {\n' +
+            '    directions: \'mascots/mymascot-directions.webp\',\n' +
+            '    reactions:  \'mascots/mymascot-reactions.webp\',\n' +
+            '    size: 140,\n' +
+            '    label: \'mymascot\'\n' +
+            '  });\n' +
+            '<\/script>';
+          openGuide();
+        }
+
+        function openGuide() {
+          guide.setAttribute('aria-hidden', 'false');
+          guideBackdrop.classList.add('is-open');
+          guideBackdrop.setAttribute('aria-hidden', 'false');
+        }
+        function closeGuide() {
+          guide.setAttribute('aria-hidden', 'true');
+          guideBackdrop.classList.remove('is-open');
+          guideBackdrop.setAttribute('aria-hidden', 'true');
+        }
+        guideClose.addEventListener('click', closeGuide);
+        guideBackdrop.addEventListener('click', closeGuide);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeGuide();
+        });
+
+        // -- Boot -------------------------------------------------------
+        document.getElementById('cast-count').textContent =
+          MASCOTS.length + ' already drawn';
+        renderHero(picked);
+        renderStyles();
+        renderCast();
+      })();
+    </script>
+  </body>
+</html>
